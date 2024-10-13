@@ -44,4 +44,47 @@ public:
             head->prev = newNode;
             head = newNode;
         }
+    }
+
+    void delete_pos(int position) {
+        if(!head) return;
+        if(position < 0) {
+            cout << "Position must be >= 0." << endl;
+            return;
+        }
+
+        Node* temp = head;
+        for (int i = 0; i < position && temp; ++i)
+            temp = temp->next;
+
+        if (!temp) {
+            cout << "Position exceeds list size. node not deleted .\n";
+            return;
+        }
+
+        if (temp==head) {
+            pop_front();
+        } else if (temp == tail) {
+            pop_back();
+        } else {
+            temp->prev->next = temp->next;
+            temp->prev->prev = temp->prev;
+            delete temp;
+        }
+    }
+
+    void pop_front(){
+        if(!head) return;
+        Node* temp = head;
+        head = head->next;
+        if (head)
+            head->prev = nullptr;
+        else 
+            tail = nullptr;
+        delete temp;
+    }
+
+    
+        
+
     
