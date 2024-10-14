@@ -1,3 +1,11 @@
+/*
+ * Title: Doubly Linked List Upgrade
+ * Description: This program extends the doubly linked list to include methods for deleting nodes by position,
+ *              popping from both the front and back, and renaming the delete function to delete_val().
+ * Author: Talha Ahmed
+ * Lab: 22
+ * Class: COMSC-210 Program Design and Data Structures
+ */
 #include <iostream>
 using namespace std;
 
