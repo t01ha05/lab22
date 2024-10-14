@@ -45,9 +45,9 @@ public:
             head = newNode;
         }
     }
-
+    //delete by position
     void delete_pos(int position) {
-        if(!head) return;
+        if(!head) return; //list is empty
         if(position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
@@ -72,7 +72,7 @@ public:
             delete temp;
         }
     }
-
+    //delete the head node
     void pop_front(){
         if(!head) return;
         Node* temp = head;
@@ -80,10 +80,10 @@ public:
         if (head)
             head->prev = nullptr;
         else 
-            tail = nullptr;
+            tail = nullptr;//list became empty
         delete temp;
     }
-
+    //delete tail node
     void pop_back() {
         if(!tail) return;
         Node* temp = tail;
@@ -94,18 +94,18 @@ public:
             head = nullptr;
         delete temp;
     }
-
+    //delete by value
     void delete_val(int value){
-        if (!head) return;
+        if (!head) return;   //empty list
         Node* temp = head;
         while (temp && temp->data!= value)
             temp = temp->next;
-        if(!temp) return;
+        if(!temp) return; //value not found
 
         if (temp ==head) {
-            pop_front();
+            pop_front(); //delete head
         } else if (temp == tail) {
-            pop_back();
+            pop_back(); //delete tail
         } else {
             temp->prev->next = temp->next;
             temp->next->prev = temp->prev;
@@ -124,7 +124,7 @@ public:
         }
         cout << endl;
     }
-
+    //prints list backwards
     void print__reverse() const {
         if (!tail) {
             cout << "List is empty" << endl;
@@ -137,7 +137,7 @@ public:
         }
         cout << endl;
     }
-
+    //destrucvtor
     ~DoublyLinkedList(){
         while (head) {
             Node* temp = head;
@@ -146,7 +146,7 @@ public:
         }
     }
 };
-
+//driver program
 int main() {
     DoublyLinkedList list;
     int size = rand() % (MAX_LS - MIN_LS + 1) + MIN_LS;
@@ -158,10 +158,12 @@ int main() {
     cout << "Initial list backward: ";
     list.print__reverse();
 
+    //deleting by postion
     cout << "\nDeleting node at position 2:" << endl;
     list.delete_pos(2);
     list.print();
 
+    //popping front and back
     cout << "Popping front node: " << endl;
     list.pop_front();
     list.print();
