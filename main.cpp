@@ -84,7 +84,36 @@ public:
         delete temp;
     }
 
-    
+    void pop_back() {
+        if(!tail) return;
+        Node* temp = tail;
+        tail = tail->prev;
+        if(tail)
+            tail->next = nullptr;
+        else 
+            head = nullptr;
+        delete temp;
+    }
+
+    void delete_val(int value){
+        if (!head) return;
+        Node* temp = head;
+        while (temp && temp->data!= value)
+            temp = temp->next;
+        if(!temp) return;
+
+        if (temp ==head) {
+            pop_front();
+        } else if (temp == tail) {
+            pop_back();
+        } else {
+            temp->prev->next = temp->next;
+            temp->next->prev = temp->prev;
+            delete temp;
+        }
+    }
+
+
         
 
     
