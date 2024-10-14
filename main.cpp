@@ -112,8 +112,69 @@ public:
             delete temp;
         }
     }
+    void print() const {
+        if (!head) {
+            cout << "List is empty" << endl;
+            return;
+        }
+        Node* current = head;
+        while (current) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
 
+    void print__reverse() const {
+        if (!tail) {
+            cout << "List is empty" << endl;
+            return;
+        }
+        Node* current = tail;
+        while (current) {
+            cout << current->data << " ";
+            current = current->prev;
+        }
+        cout << endl;
+    }
 
-        
+    ~DoublyLinkedList(){
+        while (head) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
+
+int main() {
+    DoublyLinkedList list;
+    int size = rand() % (MAX_LS - MIN_LS + 1) + MIN_LS;
+    for ( int i = 0; i < size; i++)
+        list.push_back(rand() % (MAX_NR - MIN_NR + 1) + MIN_NR);
+
+    cout << "Initial list forward: ";
+    list.print();
+    cout << "Initial list backward: ";
+    list.print__reverse();
+
+    cout << "\nDeleting node at position 2:" << endl;
+    list.delete_pos(2);
+    list.print();
+
+    cout << "Popping front node: " << endl;
+    list.pop_front();
+    list.print();
+
+    cout << "Popping back node: " << endl;
+    list.pop_back();
+    list.print();
+
+    cout << "Deleting node with value 42(if exists): "<< endl;
+    list.delete_val(42);
+    list.print();
+
+    return 0;
+}
 
     
